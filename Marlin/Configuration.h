@@ -1014,30 +1014,27 @@
  * Override with M92
  *                                      X, Y, Z [, I [, J [, K...]]], E0 [, E1[, E2...]]
  */
-/*
- * Y -> max. 360 degrees, 200 steps/revolution, 1/16 microstepping
- * Pulley ratio 48:16 = 3
- * 200.0 / 360 * 16 * 3 = 26.666666666666668 steps/degree
- */
-//#define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 26.666666666666668, 400, 500 }
 /* 
- * X -> max. 360 degrees, 200 steps/revolution, 1/256 microstepping
- * Pulley ratio 48:20
- * 200.0 / 360 * 16 * 48 / 20 = 21.3333
+ * X -> max. 360 degrees, 200 steps/revolution, 1/16 microstepping
+ * Pulley ratio 80:20 = 4
+ * 200.0 / 360 * 16 * 80 / 20 = 35.55555
  * 
- * Y -> max. 360 degrees, 200 steps/revolution, 1/256 microstepping
- * Pulley ratio 80:16 = 3
- * 200.0 / 360 * 256 * 80 / 16 = 711.1111 steps/degree
+ * Y -> max. 360 degrees, 200 steps/revolution, 1/16 microstepping
+ * Pulley ratio 80:16 = 5
+ * 200.0 / 360 * 16 * 80 / 16 = 44.44444 steps/degree
+ *
+ * Z -> max. 360 degrees, 200 steps/revolution, 1/16 microstepping
+ * Pulley ratio 48:16 = 3
+ * 200.0 / 360 * 16 * 48 / 16 = 26.66666 steps/degree
  */
-//#define DEFAULT_AXIS_STEPS_PER_UNIT   { 21.3333, 711.1111, 400, 500 }
-#define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 80, 500 }
+#define DEFAULT_AXIS_STEPS_PER_UNIT   { 35.55555, 44.44444, 26.66666, 500 }
 
 /**
  * Default Max Feed Rate (linear=mm/s, rotational=°/s)
  * Override with M203
  *                                      X, Y, Z [, I [, J [, K...]]], E0 [, E1[, E2...]]
  */
-#define DEFAULT_MAX_FEEDRATE          { 100, 100, 5, 25 }
+#define DEFAULT_MAX_FEEDRATE          { 50, 75, 50, 25 }
 
 //#define LIMITED_MAX_FR_EDITING        // Limit edit via M203 or LCD to DEFAULT_MAX_FEEDRATE * 2
 #if ENABLED(LIMITED_MAX_FR_EDITING)
@@ -1098,7 +1095,7 @@
   #endif
 #endif
 
-#define DEFAULT_EJERK    5.0  // May be used by Linear Advance
+#define DEFAULT_EJERK    0.1  // May be used by Linear Advance
 
 /**
  * Junction Deviation Factor
@@ -1508,8 +1505,8 @@
 // @section machine
 
 // The size of the printable area
-#define X_BED_SIZE 595
-#define Y_BED_SIZE 380
+#define X_BED_SIZE 155
+#define Y_BED_SIZE 285
 
 // Travel limits (linear=mm, rotational=°) after homing, corresponding to endstop positions.
 #define X_MIN_POS 0
@@ -3096,18 +3093,18 @@
  * Set this manually if there are extra servos needing manual control.
  * Set to 0 to turn off servo support.
  */
-//#define NUM_SERVOS 3 // Note: Servo index starts with 0 for M280-M282 commands
+#define NUM_SERVOS 4 // Note: Servo index starts with 0 for M280-M282 commands
 
 // (ms) Delay before the next move will start, to give the servo time to reach its target angle.
 // 300ms is a good value but you can try less delay.
 // If the servo can't reach the requested position, increase it.
-#define SERVO_DELAY { 300 }
+#define SERVO_DELAY { 300, 300, 300, 300 }
 
 // Only power servos during movement, otherwise leave off to prevent jitter
 //#define DEACTIVATE_SERVOS_AFTER_MOVE
 
 // Edit servo angles with M281 and save to EEPROM with M500
-//#define EDITABLE_SERVO_ANGLES
+#define EDITABLE_SERVO_ANGLES
 
 // Disable servo with M282 to reduce power consumption, noise, and heat when not in use
 //#define SERVO_DETACH_GCODE
