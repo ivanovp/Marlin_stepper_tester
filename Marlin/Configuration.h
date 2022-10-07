@@ -169,7 +169,7 @@
  *          TMC5130, TMC5130_STANDALONE, TMC5160, TMC5160_STANDALONE
  * :['A4988', 'A5984', 'DRV8825', 'LV8729', 'L6470', 'L6474', 'POWERSTEP01', 'TB6560', 'TB6600', 'TMC2100', 'TMC2130', 'TMC2130_STANDALONE', 'TMC2160', 'TMC2160_STANDALONE', 'TMC2208', 'TMC2208_STANDALONE', 'TMC2209', 'TMC2209_STANDALONE', 'TMC26X', 'TMC26X_STANDALONE', 'TMC2660', 'TMC2660_STANDALONE', 'TMC5130', 'TMC5130_STANDALONE', 'TMC5160', 'TMC5160_STANDALONE']
  */
-#define X_DRIVER_TYPE  TB6560
+#define X_DRIVER_TYPE  TB6600 // DM556
 #define Y_DRIVER_TYPE  A4988
 #define Z_DRIVER_TYPE  A4988
 //#define X2_DRIVER_TYPE A4988
@@ -1015,7 +1015,7 @@
  *                                      X, Y, Z [, I [, J [, K...]]], E0 [, E1[, E2...]]
  */
 /* 
- * X -> max. 360 degrees, 200 steps/revolution, 1/16 microstepping
+ * X -> max. 360 degrees, 200 steps/revolution, 1/32 microstepping
  * Pulley ratio 80:20 = 4
  * 200.0 / 360 * 16 * 80 / 20 = 35.55555
  * 
@@ -1027,7 +1027,7 @@
  * Pulley ratio 48:16 = 3
  * 200.0 / 360 * 16 * 48 / 16 = 26.66666 steps/degree
  */
-#define DEFAULT_AXIS_STEPS_PER_UNIT   { 35.55555, 44.44444, 26.66666, 500 }
+#define DEFAULT_AXIS_STEPS_PER_UNIT   { 35.55555 * 2, 44.44444, 26.66666, 500 }
 
 /**
  * Default Max Feed Rate (linear=mm/s, rotational=°/s)
