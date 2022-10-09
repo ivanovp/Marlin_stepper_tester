@@ -1015,9 +1015,9 @@
  *                                      X, Y, Z [, I [, J [, K...]]], E0 [, E1[, E2...]]
  */
 /* 
- * X -> max. 360 degrees, 200 steps/revolution, 1/32 microstepping
+ * X -> max. 360 degrees, 200 steps/revolution, 1/32 microstepping (6400 pulse/rev)
  * Pulley ratio 80:20 = 4
- * 200.0 / 360 * 16 * 80 / 20 = 35.55555
+ * 200.0 / 360 * 32 * 80 / 20 = 71.11111
  * 
  * Y -> max. 360 degrees, 200 steps/revolution, 1/16 microstepping
  * Pulley ratio 80:16 = 5
@@ -1027,7 +1027,7 @@
  * Pulley ratio 48:16 = 3
  * 200.0 / 360 * 16 * 48 / 16 = 26.66666 steps/degree
  */
-#define DEFAULT_AXIS_STEPS_PER_UNIT   { 35.55555 * 2, 44.44444, 26.66666, 500 }
+#define DEFAULT_AXIS_STEPS_PER_UNIT   { 71.11111, 44.44444, 26.66666, 500 }
 
 /**
  * Default Max Feed Rate (linear=mm/s, rotational=°/s)
